@@ -14,7 +14,7 @@ const PORT=process.env.PORT || 4000;
 const {upload}=require('./Middlewares/multer')
 const {uploadFiles}=require('./Utils/fileUploader')
 app.use(cors({
-  origin: 'https://rban-craze-admin.vercel.app', // your frontend domain
+  origin: 'https://rban-craze-admin-9ler6qmxg-rudrakh22s-projects.vercel.app', // your frontend domain
   credentials: true // if you use cookies or authorization headers
 }));
 
