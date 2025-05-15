@@ -13,7 +13,10 @@ const orderRoutes = require('./Routes/orderRoutes');
 const PORT=process.env.PORT || 4000;
 const {upload}=require('./Middlewares/multer')
 const {uploadFiles}=require('./Utils/fileUploader')
-app.use(cors());
+app.use(cors({
+  origin: 'https://rban-craze-admin.vercel.app', // your frontend domain
+  credentials: true // if you use cookies or authorization headers
+}));
 
 app.use(express.json());
 app.use(upload.array('images',10));
