@@ -13,10 +13,22 @@ const orderRoutes = require('./Routes/orderRoutes');
 const PORT=process.env.PORT || 4000;
 const {upload}=require('./Middlewares/multer')
 const {uploadFiles}=require('./Utils/fileUploader')
+const allowedOrigins = [
+  'https://rban-craze-admin.vercel.app',
+  'https://rban-craze-admin-9ler6qmxg-rudrakh22s-projects.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://rban-craze-admin-9ler6qmxg-rudrakh22s-projects.vercel.app', // your frontend domain
-  credentials: true // if you use cookies or authorization headers
+  origin: function(origin, callback){
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
+
 
 app.use(express.json());
 app.use(upload.array('images',10));
